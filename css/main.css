@@ -1,0 +1,161 @@
+/* imortation d'une font depuis https://fonts.google.com/ */
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+	/* Suppression des marges que les navigateurs appliquent par défaut au body */
+	margin: 0;
+	/* Aplication de la font importée à toute la page */
+	font-family: 'Lato', sans-serif;
+}
+
+/*
+Le burger menu est en position absolue
+avec un z-index plus élevé que le menu
+*/
+.burger {
+	position: absolute;
+	z-index: 2;
+	width: 50px;
+	height: 50px;
+	top: 50px;
+	left: 50px;
+	background-color: red;
+}
+/*
+Le menu est en absolu pour passer au dessus du reste de la page
+mais reste dessous le burger menu, car son z-index est inférieur.
+Le menu fait la taille du viewport.
+*/
+.menu {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	/* Echelle de 110% de la taille réelle, passera à taille réelle grace à la classe css visible */
+	transform: scale(1.1);
+	/* Transparent par défaut, passera à opaque grace à la classe css visible */
+	opacity: 0;
+	/* Toute modification d'une porpriété CSS engendrera une transition de 400 millisecondes */
+	transition: all 0.4s;
+	/* Gris moyen transparent à 50% */
+	background-color: rgba(127, 127, 127, 0.2);
+	/* La combinaison de ces 3 propriétés suivantes permet de centrer horizontalement et verticalement les enfants de cet élément HTML */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.menu.visible {
+	/* Remise à l'échelle de base */
+	transform: scale(1);
+	/* Remise à l'opacité de base */
+	opacity: 1;
+}
+
+.wrapper {
+	/* 90% du parent, c'est à dire .menu */
+	width: 90%;
+	height: 90%;
+	/* Gris moyen transparent à 50% */
+	background-color: rgba(127, 127, 127, 0.2);
+	/* Alignment principal vertical, en ayant une répatition uniforme de l'espace disponible autour des enfants */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	/* Centrage selon l'axe secondaire, c'est à dire centrage horizontal */
+	align-items: center;
+}
+
+.projects {
+	position: relative;
+	/* Alignement principal horizontal, en ayant une répatition uniforme de l'espace disponible autour des enfants */
+	display: flex;
+	justify-content: space-around;
+	/* Centrage selon l'axe secondaire, c'est à dire centrage vertical */
+	align-items: center;
+	/* 90% du parent, c'est à dire .wrapper */
+	width: 90%;
+	/* Cacher ce qui pourrait dépasser de la div .projects. Supprimez cette propriété pour comparer */
+	overflow: hidden;
+}
+
+.project {
+	/* Les éléments .project se répartissent équitablement l'espace disponible dans le parent */
+	flex: 1;
+	/* Marge intérieure de 15px pour chaque élément, cf. "box model" */
+	padding: 30px;
+	/* Opacité de base de 30% */
+	opacity: 0.3;
+	/* 100% de la taille originale */
+	transform: scale(1);
+	transition: opacity 0.4s;
+}
+.project.focus {
+	/* Lorsqu'on applique la classe focus à un .project, il est complètement opaque */
+	opacity: 1;
+	/* Et est mis à 110% de sa taille originale */
+	transform: scale(1.1);
+}
+.img {
+	/* Taille fixe de l'image */
+	width: 300px;
+	height: 180px;
+	/* Pour avoir une belle image, remplacer le background color par: */
+	background-image: url(https://placekitten.com/300/180);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* Marge extérieure pour que le titre ne colle pas à l'image */
+	margin-bottom: 5px;
+}
+
+.title {
+	/* Centrage horizontal du titre */
+	text-align: center;
+}
+
+.content {
+	/* Hauteur mini de 100vh pour prendre tout l'espace du viewport */
+	min-height: 100vh;
+	min-width: 100vw;
+	/* Un bon vieux display flex pour gérer la mise en page (même technique que pour le menu) */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.hero {
+	/* Je veux une hero section (https://en.wikipedia.org/wiki/Hero_image) de 90vh et 100% de la largeur du parent */
+	height: 90vh;
+	width: 100%;
+	/* Une belle image de chat en background */
+	background-image: url(https://placekitten.com/1920/1080);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* Je me sers de flexbox pour centrer le titre */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.hero h1 {
+	/* Un peu de typographie pour le titre */
+	font-size: 3em;
+	font-weight: bold;
+}
+
+.other {
+	/* Encore du display flex */
+	display: flex;
+	justify-content: space-around;
+	justify-content: center;
+	/* Je veux une largeur fixe */
+	width: 960px;
+}
+.other div {
+	/* Chaque div se partagent de manière égale l'espace disponible dans le parent .other */
+	flex: 1;
+	/* Marge intérieure de 30px pour chaque div dans .other */
+	padding: 30px;
+}
